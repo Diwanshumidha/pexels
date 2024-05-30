@@ -32,7 +32,8 @@ model User {
   role          UserRole  @default(USER)
   accounts      Account[]
 
-  images Image[] @relation("images")
+  images        Image[] @relation("images")
+  imagesAllowed Int     @default(10)
 
   // Liked Images
   likedImages    Image[]  @relation("likes", fields: [likedImagesIds], references: [id])
