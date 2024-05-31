@@ -38,7 +38,7 @@ export const UploadModal = () => {
 
   return (
     <Drawer open={isUploadModalOpen} onOpenChange={setModalOpenState}>
-      <DrawerContent style={{ height: "90svh" }}>
+      <DrawerContent style={{ height: "90svh" }} className="overflow-y-auto">
         <DrawerHeader>
           <DrawerTitle className="flex gap-3 items-center">
             <ImagePlus />
@@ -46,7 +46,7 @@ export const UploadModal = () => {
           </DrawerTitle>
           <DrawerDescription>Here You Can Upload Images</DrawerDescription>
         </DrawerHeader>
-        <div className=" py-14">
+        <div className=" py-14 overflow-y-auto ">
           <UploadForm />
         </div>
       </DrawerContent>

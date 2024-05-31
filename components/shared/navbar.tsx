@@ -13,13 +13,12 @@ import {
 } from "lucide-react";
 import { auth } from "@/auth";
 import UploadImageButton from "./UploadImageButton";
-import { UserAvatar } from "../ui/avatar";
 import UserButton from "./auth/user-button";
 
 export async function Navbar() {
   const session = await auth();
   return (
-    <header className="flex container max-w-[1400px] mx-auto h-16 w-full items-center justify-between px-4 md:px-6">
+    <header className="flex container max-w-[1400px] mx-auto bg-white h-16 w-full items-center justify-between px-4 md:px-6">
       <Link className="flex items-center gap-2" href="/">
         <Image src={"/logo.svg"} width={40} height={40} alt="Logo" />
         <span className="text-lg font-semibold">Magica</span>

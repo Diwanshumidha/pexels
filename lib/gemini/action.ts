@@ -33,6 +33,5 @@ export async function server_GetDescription(formData: FormData) {
   const result = await model.generateContent([prompt, ...imageParts]);
   const response = await result.response;
   const text = response.text();
-  console.log(text);
   return text;
 }

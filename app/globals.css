@@ -118,7 +118,7 @@ body[data-scroll-locked] {
   @apply bg-black/70 backdrop-blur-md;
 }
 
-.loader {
+.loader-spinner {
   width: 30px;
   aspect-ratio: 1;
   border-radius: 50%;

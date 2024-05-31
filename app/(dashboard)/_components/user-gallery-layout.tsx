@@ -30,9 +30,9 @@ const UserGalleryLayout = ({
     <div>
       <div className="relative h-[40svh]">
         <img
-          src={thumbnail.image}
+          src={thumbnail?.image || "/gradient.jpg"}
           className="w-full object-cover h-full "
-          alt={thumbnail.name}
+          alt={thumbnail?.name || "Thumbnail"}
         />
         <div className="absolute top-0 left-0 w-full h-full bg-black/50"></div>
 
@@ -42,12 +42,11 @@ const UserGalleryLayout = ({
               src={
                 user?.profileImage || "https://placehold.co/600x400/EEE/31343C"
               }
-              alt="user Image"
+              alt="Your Profile Picture"
               className=" border-white border-solid border-4 rounded-full shadow-white shadow-2xl italic    "
               name={user?.name || "User"}
               size="size-28 text-3xl font-bold text-white"
             />
-            <img />
           </div>
         </div>
       </div>
@@ -78,9 +77,21 @@ const UserGalleryLayout = ({
           </div>
         ) : null}
       </div>
-
+      {!images || images.length <= 0 ? (
+        <div className=" w-full flex justify-center items-center flex-col">
+          <img
+            alt="No Images Found Illustration"
+            aria-hidden
+            src="/illustrations/image_illustration.svg"
+            width={300}
+            height={300}
+            className="size-[300px]"
+          ></img>
+          <h2 className=" text-xl">No Images Found</h2>
+        </div>
+      ) : null}
       <div className="container mx-auto columns-1 mt-6 gap-1 sm:columns-2  md:columns-3 lg:columns-5 space-y-3 sm:space-y-1">
-        {images.map((image, idx) => {
+        {images?.map((image, idx) => {
           return (
             <ImageCard
               index={idx}

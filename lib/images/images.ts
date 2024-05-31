@@ -5,7 +5,7 @@ import { Prisma } from "@prisma/client";
 const LIMIT = 10;
 export const getLatestImages = async (page: number) => {
   const skip = (page - 1) * LIMIT;
-  console.log(skip);
+
   const imagesPromise = db.image.findMany({
     orderBy: {
       updatedAt: "desc",

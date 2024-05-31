@@ -28,8 +28,6 @@ const Page = async () => {
     },
   });
 
-  console.log(userWithLikedImages?.name);
-
   if (!userWithLikedImages) {
     return notFound();
   }

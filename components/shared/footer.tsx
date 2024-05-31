@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default () => {
+const Footer = () => {
   const footerNavs = [
     {
       href: "/liked",
@@ -31,7 +31,10 @@ export default () => {
             </p>
             <ul className="flex flex-wrap items-center gap-4 text-sm sm:text-base">
               {footerNavs.map((item, idx) => (
-                <li className="text-gray-800 hover:text-gray-500 duration-150">
+                <li
+                  key={item.name}
+                  className="text-gray-800 hover:text-gray-500 duration-150"
+                >
                   <Link key={idx} href={item.href}>
                     {item.name}
                   </Link>
@@ -47,3 +50,5 @@ export default () => {
     </footer>
   );
 };
+
+export default Footer;

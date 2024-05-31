@@ -20,25 +20,26 @@ const LoadMore = ({ initialImages, likedImages, savedImages }: props) => {
   const session = useSession();
 
   const { ref, inView } = useInView({ rootMargin: "1000px", threshold: 0.1 });
-  const loadMore = async () => {
-    if (!hasMore) return;
-    console.log("Loading....");
-    const nextPage = pagesLoaded + 1;
-    const newImages = await getLatestImages(nextPage);
-    console.log(newImages);
-
-    if (newImages.total <= Images.length) {
-      setHasMore(false);
-    }
-    setImages([...Images, ...newImages.images]);
-    setPagesLoaded(nextPage);
-  };
 
   useEffect(() => {
+    const loadMore = async () => {
+      if (!hasMore) return;
+
+      const nextPage = pagesLoaded + 1;
+      const newImages = await getLatestImages(nextPage);
+
+      if (newImages.total === Images.length) {
+        setHasMore(false);
+      }
+      setImages([...Images, ...newImages.images]);
+      setPagesLoaded(nextPage);
+    };
+
     if (inView) {
       loadMore();
     }
-  }, [inView]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inView, Images]);
 
   return (
     <div>
@@ -48,7 +49,10 @@ const LoadMore = ({ initialImages, likedImages, savedImages }: props) => {
         likedImages={likedImages}
         savedImages={savedImages}
       />
-      <div ref={ref} className="w-full flex items-center justify-center py-2">
+      <div
+        ref={ref}
+        className="w-full relative flex items-center justify-center py-2"
+      >
         {hasMore ? <Spinner /> : null}
       </div>
     </div>

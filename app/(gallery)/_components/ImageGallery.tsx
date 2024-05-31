@@ -28,7 +28,6 @@ const ImageGallery = ({
 }: ImageGallery) => {
   const [index, setIndex] = useState(-1);
   const onOpen = (index: number) => {
-    console.log({ index });
     setIndex(index);
   };
 

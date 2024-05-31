@@ -68,7 +68,6 @@ export const AddImageToCloudinaryAction = async (
     const ImageUri = await FileToUri(data.image);
 
     const images = await uploadImage(ImageUri, data.tags);
-    console.log(images.secure_url);
 
     await db.image.create({
       data: {
@@ -96,7 +95,6 @@ export const LikeImageAction = async (
   imageId: string
 ): Promise<Return_Type> => {
   try {
-    console.log({ imageId });
     if (!imageId) {
       return {
         success: false,
@@ -122,7 +120,7 @@ export const LikeImageAction = async (
         },
       },
     });
-    console.log({ image });
+
     revalidatePath("/");
     return {
       success: true,
@@ -140,7 +138,6 @@ export const DislikeImageAction = async (
   imageId: string
 ): Promise<Return_Type> => {
   try {
-    console.log({ imageId });
     if (!imageId) {
       return {
         success: false,
@@ -166,7 +163,7 @@ export const DislikeImageAction = async (
         },
       },
     });
-    console.log({ image });
+
     revalidatePath("/");
     return {
       success: true,
@@ -182,7 +179,6 @@ export const DislikeImageAction = async (
 
 export const AddImageToSavedAction = async (imageId: string) => {
   try {
-    console.log({ imageId });
     if (!imageId) {
       return {
         success: false,
@@ -222,7 +218,6 @@ export const AddImageToSavedAction = async (imageId: string) => {
 
 export const RemoveImageFromSavedAction = async (imageId: string) => {
   try {
-    console.log({ imageId });
     if (!imageId) {
       return {
         success: false,

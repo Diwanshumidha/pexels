@@ -47,6 +47,6 @@ export const IncreaseUserUploadLimit = async () => {
       },
     },
   });
-  console.log(user);
+
   return user;
 };

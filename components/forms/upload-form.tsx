@@ -60,7 +60,6 @@ export default function UploadForm() {
   }, [errors, setFocus]);
 
   async function onSubmit(values: ImageFormSchemaType) {
-    console.log(values);
     try {
       const formData = new FormData();
 
@@ -78,8 +77,6 @@ export default function UploadForm() {
         toast.success("Successfully Created The Image");
         form.reset();
       }
-
-      console.log(res);
     } catch {
       toast.error("Something Went Wrong", { description: "Try Again Later" });
     }
@@ -95,18 +92,18 @@ export default function UploadForm() {
       const description = await server_GetDescription(formData);
       form.setValue("description", description);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     } finally {
       setIsGeneratingDescription(false);
     }
   };
 
   return (
-    <div className="container mx-auto max-w-3xl ">
+    <div className="container mx-auto max-w-3xl  ">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8  grid grid-cols-2 py-3 w-full"
+          className="space-y-8  grid grid-cols-1 md:grid-cols-2 py-3 w-full"
         >
           <div className="max-w-[290px] max-h-[60vh] ">
             <FormField

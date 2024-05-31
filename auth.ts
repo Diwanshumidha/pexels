@@ -9,17 +9,12 @@ declare module "next-auth" {
     user: {
       id: string;
       role: string;
-      // name : string,
       status: string;
     } & DefaultSession["user"];
   }
 }
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
-  //   pages: {
-  //     signIn: "/auth/login",
-  //   },
-
   callbacks: {
     async session({ token, session }) {
       // console.log({ token });
@@ -32,9 +27,9 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     async jwt({ token }) {
       // console.log({token});
       if (!token.sub) return token;
-      console.log(token.sub);
       const existingUser = await getUserById(token.sub);
       if (!existingUser) return token;
+      // @ts-expect-error
       token.role = existingUser.role;
       return token;
     },
