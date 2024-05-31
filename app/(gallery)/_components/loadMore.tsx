@@ -6,6 +6,7 @@ import { getLatestImages } from "@/lib/images/images";
 import { ImageWithUser } from "@/lib/types/prisma";
 import ImageGallery from "./ImageGallery";
 import { useSession } from "next-auth/react";
+import { cn } from "@/lib/utils";
 
 type props = {
   likedImages: string[] | undefined;
@@ -18,7 +19,7 @@ const LoadMore = ({ initialImages, likedImages, savedImages }: props) => {
   const [hasMore, setHasMore] = useState(true);
   const session = useSession();
 
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({ rootMargin: "1000px", threshold: 0.1 });
   const loadMore = async () => {
     if (!hasMore) return;
     console.log("Loading....");

@@ -79,6 +79,10 @@ html {
   }
 }
 
+body[data-scroll-locked] {
+  min-width: 100%;
+}
+
 /* ------------------------ LootBox ----------------------------------- */
 
 .yarl__button .yarl__icon {
@@ -129,5 +133,27 @@ html {
 @keyframes l13 {
   100% {
     transform: rotate(1turn);
+  }
+}
+
+.hero__video:hover .animate-scale-pulse::before {
+  @apply bg-green-500;
+  position: absolute;
+  inset: 0;
+  content: "";
+  border-radius: 100%;
+  animation: scale-pulse 1.2s ease infinite;
+}
+
+@keyframes scale-pulse {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
   }
 }

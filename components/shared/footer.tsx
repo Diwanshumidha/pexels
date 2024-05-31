@@ -4,20 +4,16 @@ import Link from "next/link";
 export default () => {
   const footerNavs = [
     {
-      href: "javascript:void()",
-      name: "Terms",
+      href: "/liked",
+      name: "Liked Images",
     },
     {
-      href: "javascript:void()",
-      name: "License",
+      href: "/saved",
+      name: "Saved Images",
     },
     {
-      href: "javascript:void()",
-      name: "Privacy",
-    },
-    {
-      href: "javascript:void()",
-      name: "About us",
+      href: "/me",
+      name: "My Images",
     },
   ];
   return (
@@ -36,16 +32,16 @@ export default () => {
             <ul className="flex flex-wrap items-center gap-4 text-sm sm:text-base">
               {footerNavs.map((item, idx) => (
                 <li className="text-gray-800 hover:text-gray-500 duration-150">
-                  <a key={idx} href={item.href}>
+                  <Link key={idx} href={item.href}>
                     {item.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
         </div>
         <div className="mt-10 py-3 border-t md:text-center">
-          <p>© 2022 Float UI Inc. All rights reserved.</p>
+          <p>© 2022 All rights reserved.</p>
         </div>
       </div>
     </footer>

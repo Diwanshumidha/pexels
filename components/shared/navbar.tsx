@@ -4,6 +4,7 @@ import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
 import Image from "next/image";
 import {
   ContactIcon,
+  Github,
   HomeIcon,
   InfoIcon,
   MenuIcon,
@@ -13,44 +14,37 @@ import {
 import { auth } from "@/auth";
 import UploadImageButton from "./UploadImageButton";
 import { UserAvatar } from "../ui/avatar";
+import UserButton from "./auth/user-button";
 
 export async function Navbar() {
   const session = await auth();
   return (
-    <header className="flex h-16 w-full items-center justify-between px-4 md:px-6">
+    <header className="flex container max-w-[1400px] mx-auto h-16 w-full items-center justify-between px-4 md:px-6">
       <Link className="flex items-center gap-2" href="/">
         <Image src={"/logo.svg"} width={40} height={40} alt="Logo" />
         <span className="text-lg font-semibold">Magica</span>
       </Link>
       <nav className="hidden items-center gap-6 text-sm font-medium md:flex">
-        <Link className="hover:underline hover:underline-offset-4" href="#">
-          Home
-        </Link>
-        <Link className="hover:underline hover:underline-offset-4" href="#">
-          About
-        </Link>
-        <Link className="hover:underline hover:underline-offset-4" href="#">
-          Services
-        </Link>
-        <Link className="hover:underline hover:underline-offset-4" href="#">
-          Contact
-        </Link>
-
         {session?.user ? (
           <>
             <UploadImageButton />
           </>
         ) : null}
 
+        <a
+          href="https://github.com/Diwanshumidha/pexels"
+          target="_blank"
+          className="flex items-center justify-center gap-x-2 py-2 px-4 text-gray-700 hover:text-gray-500 font-medium duration-150 active:bg-gray-100 border rounded-lg md:inline-flex"
+        >
+          <Github />
+          Github
+        </a>
+
         {session?.user ? (
-          <UserAvatar
-            alt="Profile"
-            name={session.user.name || "User"}
-            width={40}
-            height={40}
-            size="size-10"
-            src={session.user.image || "/logo.svg"}
-            className=" size-10"
+          <UserButton
+            profileImage={session.user.image || "/logo.svg"}
+            username={session.user.name || "User"}
+            userEmail={session.user.email || "-"}
           />
         ) : null}
       </nav>

@@ -1,14 +1,20 @@
-import { auth } from "@/auth";
+import { auth, signIn } from "@/auth";
 import { db } from "@/prisma/prisma";
 import React from "react";
 import UserGalleryLayout from "../../_components/user-gallery-layout";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 const Page = async () => {
   const session = await auth();
+  if (!session?.user.id) {
+    // return signIn();
+    return redirect("/api/auth/signin");
+  }
+
   const userWithLikedImages = await db.user.findFirst({
     where: {
       id: session?.user.id,
+      email: session?.user.email || undefined,
     },
     select: {
       likedImages: true,
@@ -21,6 +27,8 @@ const Page = async () => {
       image: true,
     },
   });
+
+  console.log(userWithLikedImages?.name);
 
   if (!userWithLikedImages) {
     return notFound();
@@ -35,7 +43,7 @@ const Page = async () => {
         name: userWithLikedImages?.name,
         profileImage: userWithLikedImages?.image,
       }}
-      title="Liked Images"
+      title={`${session?.user.name}`}
     />
   );
 };
