@@ -90,7 +90,7 @@ export default function UploadForm() {
       formData.append("image", image);
 
       const description = await server_GetDescription(formData);
-      form.setValue("description", description);
+      form.setValue("description", description.trim());
     } catch (error) {
       console.error(error);
     } finally {
@@ -99,18 +99,18 @@ export default function UploadForm() {
   };
 
   return (
-    <div className="container mx-auto max-w-3xl  ">
+    <div className="container mx-auto max-w-3xl h-full   ">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-8  grid grid-cols-1 md:grid-cols-2 py-3 w-full"
         >
-          <div className="max-w-[290px] max-h-[60vh] ">
+          <div className="max-w-[290px]">
             <FormField
               control={form.control}
               name={"image"}
               render={({ field }) => (
-                <FormItem className=" h-full">
+                <FormItem className="h-full">
                   <FormLabel>Upload Image</FormLabel>
 
                   <FormControl className="h-full">
@@ -139,7 +139,7 @@ export default function UploadForm() {
                               width={100}
                               height={100}
                               src={ImageUrl}
-                              className=" aspect-auto w-full flex-1 max-h-full object-cover  "
+                              className=" aspect-auto w-full max-h-[360px]  object-cover   "
                             />
                           ) : null}
 

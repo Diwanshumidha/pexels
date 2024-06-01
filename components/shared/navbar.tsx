@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
 import Image from "next/image";
 import {
@@ -10,6 +10,7 @@ import {
   MenuIcon,
   PlusIcon,
   ServerIcon,
+  User,
 } from "lucide-react";
 import { auth } from "@/auth";
 import UploadImageButton from "./UploadImageButton";
@@ -28,7 +29,17 @@ export async function Navbar() {
           <>
             <UploadImageButton />
           </>
-        ) : null}
+        ) : (
+          <>
+            <Link
+              className={buttonVariants({ className: "gap-2" })}
+              href={"/api/auth/signin"}
+            >
+              <User size={18} />
+              Sign In
+            </Link>
+          </>
+        )}
 
         <a
           href="https://github.com/Diwanshumidha/pexels"
